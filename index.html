@@ -375,85 +375,92 @@
             box-shadow: 0 0 12px var(--accent-glow);
         }
 
-        /* FORM & RATING STYLES */
-        .form-group { margin-bottom: 1.5rem; }
-        .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-light); font-weight: 500; }
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(5, 8, 20, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-            background: rgba(15, 23, 42, 0.9);
-        }
-
-        .star-rating {
-            display: flex;
-            gap: 10px;
-            direction: rtl;
-            justify-content: flex-end;
-            width: max-content;
-        }
-
-        .star-rating input { display: none; }
-        .star-rating label {
-            font-size: 2rem;
-            color: #334155;
-            cursor: pointer;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-
-        .star-rating label:hover,
-        .star-rating label:hover ~ label,
-        .star-rating input:checked ~ label {
-            color: var(--accent-gold);
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-            transform: scale(1.15);
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, var(--accent) 0%, #0077b6 100%);
-            color: #000;
-            font-weight: 700;
-            padding: 14px 32px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px var(--accent-glow);
-            width: 100%;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
-        }
-
-        .alert-success {
-            display: none;
-            background: rgba(112, 224, 0, 0.1);
-            border: 1px solid #70e000;
-            color: #70e000;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 1.5rem;
-            box-shadow: 0 0 20px rgba(112, 224, 0, 0.2);
-        }
-
         /* =========================================================
-           DEVELOPER CONTACT PAGE STYLES
+           SPECIAL CYBERPUNK STYLING FOR SUPPORT & FEEDBACK PAGE
            ========================================================= */
+        .support-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 30, 0.98));
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.25), inset 0 0 20px rgba(0, 240, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold), var(--accent-hover));
+        }
+
+        .support-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            padding-bottom: 1.2rem;
+        }
+
+        .support-title-group h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            margin-bottom: 0.3rem;
+        }
+
+        .support-title-group p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .btn-cyber-external {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 119, 182, 0.3));
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-cyber-external:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .gform-wrapper {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            overflow: hidden;
+            padding: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 240, 255, 0.3);
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            position: relative;
+        }
+
+        .gform-iframe {
+            width: 100%;
+            height: 900px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        /* DEVELOPER CONTACT PAGE STYLES */
         .dev-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -628,6 +635,8 @@
         @media (max-width: 868px) {
             nav { flex-direction: column; justify-content: center; }
             .hero-title { font-size: 2rem; }
+            .gform-iframe { height: 1100px; }
+            .support-card { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -759,66 +768,39 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 5: SUPPORT & FEEDBACK ================= -->
+        <!-- ================= PAGE 5: SUPPORT & GOOGLE FORMS (STYLIZED CYBERPUNK) ================= -->
         <div id="page-support" class="page-view">
-            <div class="card">
-                <h2 style="color: var(--accent); margin-bottom: 0.5rem;" data-th="ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ" data-en="Help Desk & Satisfaction Assessment">ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-th="หากคุณพบปัญหาในการใช้งานเว็บไซต์ มีข้อสงสัยเกี่ยวกับกติกา หรือต้องการประเมินเว็บไซต์ สามารถส่งข้อมูลถึงทีมงานได้ด้านล่างนี้ครับ" data-en="If you encounter issues, have questions regarding competition rules, or want to rate our site, please fill out the form below.">
-                    หากคุณพบปัญหาในการใช้งานเว็บไซต์ มีข้อสงสัยเกี่ยวกับกติกา หรือต้องการประเมินเว็บไซต์ สามารถส่งข้อมูลถึงทีมงานได้ด้านล่างนี้ครับ
-                </p>
-
-                <form id="support-form" onsubmit="handleFormSubmit(event)">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem;">
-                        <div class="form-group">
-                            <label class="form-label" data-th="ชื่อ-นามสกุล / ชื่อทีม" data-en="Full Name / Team Name">ชื่อ-นามสกุล / ชื่อทีม</label>
-                            <input type="text" class="form-input" required placeholder="กรอกชื่อของคุณหรือชื่อทีม">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-th="อีเมล หรือ เบอร์โทรติดต่อ" data-en="Email or Phone Number">อีเมล หรือ เบอร์โทรติดต่อ</label>
-                            <input type="text" class="form-input" required placeholder="example@email.com / 08X-XXX-XXXX">
-                        </div>
+            <div class="support-card">
+                <div class="support-header-flex">
+                    <div class="support-title-group">
+                        <h2 data-th="ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ" data-en="Help Desk & Satisfaction Assessment">ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ</h2>
+                        <p data-th="ระบบประเมินผลออนไลน์และรับแจ้งปัญหาการใช้งาน (เชื่อมต่อระบบ Google Sheets อัตโนมัติ)" data-en="Online evaluation and issue reporting system connected to Google Sheets">
+                            ระบบประเมินผลออนไลน์และรับแจ้งปัญหาการใช้งาน (เชื่อมต่อระบบ Google Sheets อัตโนมัติ)
+                        </p>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label" data-th="หัวข้อปัญหาที่ต้องการแจ้ง" data-en="Issue Type">หัวข้อปัญหาที่ต้องการแจ้ง</label>
-                        <select class="form-select" required>
-                            <option value="" disabled selected data-th="-- กรุณาเลือกประเภทปัญหา --" data-en="-- Select Issue Type --">-- กรุณาเลือกประเภทปัญหา --</option>
-                            <option value="rules" data-th="สอบถามกติกาการแข่งขัน" data-en="Question about Rules">สอบถามกติกาการแข่งขัน</option>
-                            <option value="tech" data-th="ปัญหาการเขียนโปรแกรม / เซนเซอร์" data-en="Programming / Hardware Issue">ปัญหาการเขียนโปรแกรม / เซนเซอร์</option>
-                            <option value="website" data-th="แจ้งปัญหาการใช้งานเว็บไซต์" data-en="Website Technical Bug">แจ้งปัญหาการใช้งานเว็บไซต์</option>
-                            <option value="other" data-th="เรื่องอื่นๆ" data-en="Others">เรื่องอื่นๆ</option>
-                        </select>
+                    <div>
+                        <a id="gform-external-link" href="https://forms.gle/rNLACJxew94Bpf8A8" target="_blank" class="btn-cyber-external" data-th="↗ เปิดฟอร์มเต็มจอในแท็บใหม่" data-en="↗ Open Full Form">
+                            ↗ เปิดฟอร์มเต็มจอในแท็บใหม่
+                        </a>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="form-label" data-th="รายละเอียดปัญหา / ข้อเสนอแนะ" data-en="Issue Details / Feedback">รายละเอียดปัญหา / ข้อเสนอแนะ</label>
-                        <textarea class="form-textarea" rows="4" required placeholder="อธิบายรายละเอียดปัญหาหรือคำถามของคุณที่นี่..."></textarea>
-                    </div>
-
-                    <div class="form-group" style="background: rgba(5, 8, 20, 0.4); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                        <label class="form-label" style="text-align: center; color: var(--accent-gold); margin-bottom: 0.8rem;" data-th="ประเมินความพึงพอใจการใช้งานเว็บไซต์" data-en="Rate Your Website Satisfaction Experience">ประเมินความพึงพอใจการใช้งานเว็บไซต์</label>
-                        <div style="display: flex; justify-content: center;">
-                            <div class="star-rating">
-                                <input type="radio" id="star5" name="rating" value="5" required/><label for="star5" title="5 ดาว - ดีเยี่ยม">★</label>
-                                <input type="radio" id="star4" name="rating" value="4"/><label for="star4" title="4 ดาว - ดีมาก">★</label>
-                                <input type="radio" id="star3" name="rating" value="3"/><label for="star3" title="3 ดาว - ปานกลาง">★</label>
-                                <input type="radio" id="star2" name="rating" value="2"/><label for="star2" title="2 ดาว - ควรปรับปรุง">★</label>
-                                <input type="radio" id="star1" name="rating" value="1"/><label for="star1" title="1 ดาว - แย่">★</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit" data-th="ส่งข้อมูลแจ้งปัญหาและผลประเมิน" data-en="Submit Feedback & Rating">ส่งข้อมูลแจ้งปัญหาและผลประเมิน</button>
-                </form>
-
-                <div id="success-alert" class="alert-success">
-                    <strong style="font-size: 1.1rem;" data-th="✔ ส่งข้อมูลสำเร็จเรียบร้อย!" data-en="✔ Submission Successful!">✔ ส่งข้อมูลสำเร็จเรียบร้อย!</strong><br>
-                    <span data-th="ขอบคุณสำหรับข้อมูลแจ้งปัญหาและผลประเมิน ทีมงานจะนำไปปรับปรุงและตอบกลับโดยเร็วที่สุดครับ" data-en="Thank you for your feedback and rating. Our team will review and respond as soon as possible.">ขอบคุณสำหรับข้อมูลแจ้งปัญหาและผลประเมิน ทีมงานจะนำไปปรับปรุงและตอบกลับโดยเร็วที่สุดครับ</span>
+                <!-- Google Form Embedded Iframe -->
+                <div class="gform-wrapper">
+                    <iframe 
+                        id="gform-iframe"
+                        class="gform-iframe" 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLScxJ12HNAdQaseH3U5jaB8k_QTtZS9w6tu7P2czA4mzC38S3A/viewform?embedded=true" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                        กำลังโหลดแบบฟอร์ม Google Forms...
+                    </iframe>
                 </div>
             </div>
         </div>
 
-        <!-- ================= PAGE 6: DEVELOPER CONTACT (หน้าใหม่) ================= -->
+        <!-- ================= PAGE 6: DEVELOPER CONTACT ================= -->
         <div id="page-developer" class="page-view">
             <div class="card">
                 <h2 style="color: var(--accent); margin-bottom: 0.5rem;" data-th="ช่องทางติดต่อผู้พัฒนาระบบ" data-en="Contact System Developer">ช่องทางติดต่อผู้พัฒนาระบบ</h2>
@@ -856,7 +838,7 @@
                         </p>
 
                         <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
-                            <span style="font-size: 0.82rem; color: var(--text-muted);" data-th="Tech Stack: HTML5 / Cyberpunk CSS3 / Vanilla JS" data-en="Tech Stack: HTML5 / Cyberpunk CSS3 / Vanilla JS">Tech Stack: HTML5 / Cyberpunk CSS3 / Vanilla JS</span>
+                            <span style="font-size: 0.82rem; color: var(--text-muted);" data-th="Tech Stack: HTML5 / Cyberpunk CSS3 / Google Forms" data-en="Tech Stack: HTML5 / Cyberpunk CSS3 / Google Forms">Tech Stack: HTML5 / Cyberpunk CSS3 / Google Forms</span>
                         </div>
                     </div>
                 </div>
@@ -904,20 +886,9 @@
             });
         }
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const alertBox = document.getElementById('success-alert');
-            alertBox.style.display = 'block';
-            document.getElementById('support-form').reset();
-            
-            setTimeout(() => {
-                alertBox.style.display = 'none';
-            }, 6000);
-        }
-
+        const devEmail = "bb36177@banbung.ac.th";
         function copyEmail() {
-            const emailText = document.getElementById('dev-email').innerText;
-            navigator.clipboard.writeText(emailText).then(() => {
+            navigator.clipboard.writeText(devEmail).then(() => {
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
                 setTimeout(() => {
