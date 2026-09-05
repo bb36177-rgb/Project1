@@ -375,9 +375,6 @@
             box-shadow: 0 0 12px var(--accent-glow);
         }
 
-        /* =========================================================
-           SPECIAL CYBERPUNK STYLING FOR SUPPORT & FEEDBACK PAGE
-           ========================================================= */
         .support-card {
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 30, 0.98));
             border-radius: 20px;
@@ -431,13 +428,12 @@
 
         .gform-iframe {
             width: 100%;
-            height: 1250px; /* ขยายความสูงเพื่อให้ฟอร์มแสดงผลครบถ้วนไม่ต้องเลื่อนเยอะและใช้งานในหน้าเว็บได้ทันที */
+            height: 1250px;
             border: none;
             border-radius: 10px;
             background: #ffffff;
         }
 
-        /* DEVELOPER CONTACT PAGE STYLES */
         .dev-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -578,7 +574,7 @@
 
         footer {
             background: #030712;
-            padding: 2rem 1.2rem;
+            padding: 2rem 1.2rem 1.5rem 1.2rem;
             text-align: center;
             border-top: 1px solid var(--border-color);
             margin-top: auto;
@@ -745,7 +741,7 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 5: SUPPORT & GOOGLE FORMS (EMBEDDED FULLY) ================= -->
+        <!-- ================= PAGE 5: SUPPORT & GOOGLE FORMS ================= -->
         <div id="page-support" class="page-view">
             <div class="support-card">
                 <div class="support-header-flex">
@@ -757,7 +753,6 @@
                     </div>
                 </div>
 
-                <!-- Google Form Embedded Iframe (Directly interactable) -->
                 <div class="gform-wrapper">
                     <iframe 
                         id="gform-iframe"
@@ -781,7 +776,6 @@
                 </p>
 
                 <div class="dev-container">
-                    <!-- Dev Card 1 -->
                     <div class="dev-card">
                         <div class="dev-avatar">💻</div>
                         <div class="dev-name" data-th="ผู้พัฒนาระบบ" data-en="Lead System Developer">ผู้พัฒนาระบบ</div>
@@ -800,7 +794,6 @@
                         </div>
                     </div>
 
-                    <!-- Dev Card 2 -->
                     <div class="dev-card">
                         <div class="dev-avatar" style="background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);">🏫</div>
                         <div class="dev-name" data-th="ข้อมูลสถาบัน" data-en="School Institution">ข้อมูลสถาบัน</div>
@@ -829,8 +822,12 @@
             <button class="lang-btn active" id="btn-th" onclick="changeLanguage('th')">TH (ไทย)</button>
             <button class="lang-btn" id="btn-en" onclick="changeLanguage('en')">EN (English)</button>
         </div>
-        <div style="color: var(--text-muted); font-size: 0.9rem;" data-th="เว็บไซต์เพื่อการศึกษา - โรงเรียนบ้านบึง &quot;อุตสาหกรรมนุเคราะห์&quot; จังหวัดชลบุรี" data-en="Educational Website - Banbueng &quot;Utsahakamnukroeh&quot; School, Chonburi">
+        <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.4rem;" data-th="เว็บไซต์เพื่อการศึกษา - โรงเรียนบ้านบึง &quot;อุตสาหกรรมนุเคราะห์&quot; จังหวัดชลบุรี" data-en="Educational Website - Banbueng &quot;Utsahakamnukroeh&quot; School, Chonburi">
             เว็บไซต์เพื่อการศึกษา - โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์" จังหวัดชลบุรี
+        </div>
+        <!-- ข้อความแสดงเวลาอัปเดตแบบอัตโนมัติจาก GitHub API -->
+        <div id="last-update-text" style="color: var(--accent); font-size: 0.82rem; font-weight: 600; opacity: 0.85;">
+            กำลังโหลดเวลาอัปเดตระบบล่าสุด...
         </div>
     </footer>
 
@@ -868,6 +865,51 @@
                 }, 2500);
             });
         }
+
+        // ฟังก์ชันดึงเวลาแก้ไขล่าสุดจาก GitHub API อัตโนมัติ
+        async function fetchGitHubLastUpdate() {
+            // **คำแนะนำ:** ให้เปลี่ยน 'ชื่อผู้ใช้GitHubของท่าน' และ 'ชื่อ repository ของท่าน' ด้านล่างนี้ให้ตรงกับของคุณ
+            const repoOwner = 'bb36177-rgb';
+            const repoName = 'Project1;
+            
+            const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/commits?per_page=1`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    const commitDateStr = data[0].commit.committer.date;
+                    const commitDate = new Date(commitDateStr);
+                    
+                    // แปลงรูปแบบเป็น วัน เดือน ปี เวลาไทย (เช่น 5 กันยายน 2569 เวลา 15:49 น.)
+                    const options = { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric', 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        hour12: false,
+                        timeZone: 'Asia/Bangkok'
+                    };
+                    
+                    const thaiDateStr = new Intl.DateTimeFormat('th-TH', options).format(commitDate);
+                    
+                    // แสดงผลลงในหน้าเว็บ
+                    document.getElementById('last-update-text').innerText = `ปรับปรุงระบบล่าสุดเมื่อ วันที่ ${thaiDateStr} น.`;
+                } else {
+                    document.getElementById('last-update-text').innerText = "ปรับปรุงระบบล่าสุด: ไม่พบข้อมูล Commit";
+                }
+            } catch (error) {
+                // กรณีเชื่อมต่อไม่ได้ (เช่น รันไฟล์แบบเปิดในเครื่องโดยไม่ผ่าน Server หรือเน็ตหลุด) จะใช้วันเวลาปัจจุบันแทน
+                const now = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+                document.getElementById('last-update-text').innerText = `ปรับปรุงระบบล่าสุดเมื่อ วันที่ ${now.toLocaleDateString('th-TH', options)} น.`;
+            }
+        }
+
+        // เรียกใช้งานฟังก์ชันดึงเวลาเมื่อโหลดหน้าเว็บ
+        window.addEventListener('DOMContentLoaded', fetchGitHubLastUpdate);
     </script>
 </body>
 </html>
