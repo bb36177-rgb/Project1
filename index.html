@@ -41,6 +41,9 @@
             overflow-x: hidden;
         }
 
+        /* =========================================================
+           ADVANCED LUXURY HEADER & NAVIGATION BAR
+           ========================================================= */
         header {
             background: rgba(5, 8, 20, 0.75);
             backdrop-filter: blur(20px);
@@ -372,80 +375,66 @@
             box-shadow: 0 0 12px var(--accent-glow);
         }
 
-        /* FORM & RATING STYLES */
-        .form-group { margin-bottom: 1.5rem; }
-        .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-light); font-weight: 500; }
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(5, 8, 20, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-            background: rgba(15, 23, 42, 0.9);
+        /* =========================================================
+           SPECIAL CYBERPUNK STYLING FOR SUPPORT & FEEDBACK PAGE
+           ========================================================= */
+        .support-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 30, 0.98));
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.25), inset 0 0 20px rgba(0, 240, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        .star-rating {
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold), var(--accent-hover));
+        }
+
+        .support-header-flex {
             display: flex;
-            gap: 10px;
-            direction: rtl;
-            justify-content: flex-end;
-            width: max-content;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            padding-bottom: 1.2rem;
         }
 
-        .star-rating input { display: none; }
-        .star-rating label {
-            font-size: 2rem;
-            color: #334155;
-            cursor: pointer;
-            transition: color 0.2s ease, transform 0.2s ease;
+        .support-title-group h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            margin-bottom: 0.3rem;
         }
 
-        .star-rating label:hover,
-        .star-rating label:hover ~ label,
-        .star-rating input:checked ~ label {
-            color: var(--accent-gold);
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-            transform: scale(1.15);
+        .support-title-group p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .btn-submit {
-            background: linear-gradient(135deg, var(--accent) 0%, #0077b6 100%);
-            color: #000;
-            font-weight: 700;
-            padding: 14px 32px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px var(--accent-glow);
+        .gform-wrapper {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            overflow: hidden;
+            padding: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 240, 255, 0.3);
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            position: relative;
+        }
+
+        .gform-iframe {
             width: 100%;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
-        }
-
-        .alert-success {
-            display: none;
-            background: rgba(112, 224, 0, 0.1);
-            border: 1px solid #70e000;
-            color: #70e000;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 1.5rem;
-            box-shadow: 0 0 20px rgba(112, 224, 0, 0.2);
+            height: 1250px; /* ขยายความสูงเพื่อให้ฟอร์มแสดงผลครบถ้วนไม่ต้องเลื่อนเยอะและใช้งานในหน้าเว็บได้ทันที */
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
         }
 
         /* DEVELOPER CONTACT PAGE STYLES */
@@ -623,6 +612,8 @@
         @media (max-width: 868px) {
             nav { flex-direction: column; justify-content: center; }
             .hero-title { font-size: 2rem; }
+            .gform-iframe { height: 1400px; }
+            .support-card { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -754,86 +745,72 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 5: SUPPORT & FEEDBACK ================= -->
+        <!-- ================= PAGE 5: SUPPORT & GOOGLE FORMS (EMBEDDED FULLY) ================= -->
         <div id="page-support" class="page-view">
-            <div class="card">
-                <h2 style="color: var(--accent); margin-bottom: 0.5rem;" data-th="ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ" data-en="Help Desk & Satisfaction Assessment">ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-th="หากคุณพบปัญหาในการใช้งานเว็บไซต์ มีข้อสงสัยเกี่ยวกับกติกา หรือต้องการประเมินเว็บไซต์ สามารถส่งข้อมูลถึงทีมงานได้ด้านล่างนี้ครับ" data-en="If you encounter issues, have questions regarding competition rules, or want to rate our site, please fill out the form below.">
-                    หากคุณพบปัญหาในการใช้งานเว็บไซต์ มีข้อสงสัยเกี่ยวกับกติกา หรือต้องการประเมินเว็บไซต์ สามารถส่งข้อมูลถึงทีมงานได้ด้านล่างนี้ครับ
-                </p>
-
-                <form id="support-form" onsubmit="handleFormSubmit(event)">
-                    <div class="form-group">
-                        <label class="form-label" data-th="ชื่อ - นามสกุล หรือชื่อทีม" data-en="Full Name or Team Name">ชื่อ - นามสกุล หรือชื่อทีม</label>
-                        <input type="text" class="form-input" required placeholder="ระบุชื่อของคุณ..." data-th-placeholder="ระบุชื่อของคุณ..." data-en-placeholder="Enter your name...">
+            <div class="support-card">
+                <div class="support-header-flex">
+                    <div class="support-title-group">
+                        <h2 data-th="ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ" data-en="Help Desk & Satisfaction Assessment">ศูนย์ตอบกลับปัญหา & ประเมินความพึงพอใจ</h2>
+                        <p data-th="กรอกแบบฟอร์มประเมินผลออนไลน์และแจ้งปัญหาการใช้งานได้โดยตรงบนเว็บไซต์" data-en="Fill out the evaluation form and report issues directly on the website">
+                            กรอกแบบฟอร์มประเมินผลออนไลน์และแจ้งปัญหาการใช้งานได้โดยตรงบนเว็บไซต์
+                        </p>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="form-label" data-th="ประเภทการติดต่อ / แจ้งปัญหา" data-en="Category">ประเภทการติดต่อ / แจ้งปัญหา</label>
-                        <select class="form-select">
-                            <option data-th="สอบถามกติกาการแข่งขัน" data-en="Competition Rules Inquiry">สอบถามกติกาการแข่งขัน</option>
-                            <option data-th="แจ้งปัญหาการใช้งานเว็บไซต์" data-en="Website Issue Report">แจ้งปัญหาการใช้งานเว็บไซต์</option>
-                            <option data-th="ข้อเสนอแนะเพิ่มเติม" data-en="General Feedback">ข้อเสนอแนะเพิ่มเติม</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" data-th="ข้อความ / รายละเอียดปัญหา" data-en="Message / Details">ข้อความ / รายละเอียดปัญหา</label>
-                        <textarea class="form-textarea" rows="4" required placeholder="พิมพ์รายละเอียดที่นี่..." data-th-placeholder="พิมพ์รายละเอียดที่นี่..." data-en-placeholder="Type details here..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" data-th="ประเมินความพึงพอใจเว็บไซต์" data-en="Website Satisfaction Rating">ประเมินความพึงพอใจเว็บไซต์</label>
-                        <div class="star-rating">
-                            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 ดาว">★</label>
-                            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 ดาว">★</label>
-                            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 ดาว">★</label>
-                            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 ดาว">★</label>
-                            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 ดาว">★</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit" data-th="ส่งข้อมูลระบบ" data-en="Submit Data">ส่งข้อมูลระบบ</button>
-                </form>
-
-                <div id="alert-success" class="alert-success" data-th="✓ ส่งข้อมูลสำเร็จเรียบร้อยแล้ว ขอบคุณสำหรับความคิดเห็นครับ!" data-en="✓ Submitted successfully! Thank you for your feedback.">
-                    ✓ ส่งข้อมูลสำเร็จเรียบร้อยแล้ว ขอบคุณสำหรับความคิดเห็นครับ!
+                <!-- Google Form Embedded Iframe (Directly interactable) -->
+                <div class="gform-wrapper">
+                    <iframe 
+                        id="gform-iframe"
+                        class="gform-iframe" 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLScxJ12HNAdQaseH3U5jaB8k_QTtZS9w6tu7P2czA4mzC38S3A/viewform?embedded=true" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                        กำลังโหลดแบบฟอร์ม Google Forms...
+                    </iframe>
                 </div>
             </div>
         </div>
 
-        <!-- ================= PAGE 6: DEVELOPER ================= -->
+        <!-- ================= PAGE 6: DEVELOPER CONTACT ================= -->
         <div id="page-developer" class="page-view">
             <div class="card">
-                <h2 style="color: var(--accent); margin-bottom: 0.5rem; text-align: center;" data-th="ทีมผู้พัฒนาระบบ" data-en="Development Team">ทีมผู้พัฒนาระบบ</h2>
-                <p style="color: var(--text-muted); text-align: center; margin-bottom: 2rem;" data-th="นักพัฒนาโครงงานหุ่นยนต์และระบบสารสนเทศ โรงเรียนบ้านบึง &quot;อุตสาหกรรมนุเคราะห์&quot;" data-en="Robotics and IT Project Developers from Banbueng School">
-                    นักพัฒนาโครงงานหุ่นยนต์และระบบสารสนเทศ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"
+                <h2 style="color: var(--accent); margin-bottom: 0.5rem;" data-th="ช่องทางติดต่อผู้พัฒนาระบบ" data-en="Contact System Developer">ช่องทางติดต่อผู้พัฒนาระบบ</h2>
+                <p style="color: var(--text-muted);" data-th="หากมีข้อสงสัย ข้อเสนอแนะ หรือต้องการสอบถามข้อมูลเพิ่มเติมเกี่ยวกับระบบเว็บไซต์ สามารถติดต่อผู้พัฒนาได้โดยตรง" data-en="For inquiries, feedback, or technical support regarding this web system, please contact the lead developer directly.">
+                    หากมีข้อสงสัย ข้อเสนอแนะ หรือต้องการสอบถามข้อมูลเพิ่มเติมเกี่ยวกับระบบเว็บไซต์ สามารถติดต่อผู้พัฒนาได้โดยตรง
                 </p>
 
                 <div class="dev-container">
+                    <!-- Dev Card 1 -->
                     <div class="dev-card">
-                        <div class="dev-avatar">👨‍💻</div>
-                        <h3 class="dev-name">ดร. / ครูผู้ควบคุม</h3>
-                        <p class="dev-role" data-th="ที่ปรึกษาและควบคุมทีม" data-en="Lead Advisor">ที่ปรึกษาและควบคุมทีม</p>
+                        <div class="dev-avatar">💻</div>
+                        <div class="dev-name" data-th="ผู้พัฒนาระบบ" data-en="Lead System Developer">ผู้พัฒนาระบบ</div>
+                        <div class="dev-role">SYSTEM DEVELOPER & ROBOTICS CLUB</div>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;" data-th="ทีมพัฒนาเว็บไซต์การแข่งขันหุ่นยนต์ระดับสูง สพฐ. โรงเรียนบ้านบึง &quot;อุตสาหกรรมนุเคราะห์&quot;" data-en="Web Development & Robotics Technology Team, Banbueng &quot;Utsahakamnukroeh&quot; School">
+                            ทีมพัฒนาเว็บไซต์การแข่งขันหุ่นยนต์ระดับสูง สพฐ. โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"
+                        </p>
+
                         <div class="email-box">
-                            <span class="email-text" id="email-1">advisor@banbueng.ac.th</span>
+                            <span class="email-text" id="dev-email">bb36177@banbung.ac.th</span>
                         </div>
+
                         <div class="btn-action-group">
-                            <button class="btn-action" onclick="copyEmail('advisor@banbueng.ac.th')">📋 คัดลอกอีเมล</button>
-                            <a href="mailto:advisor@banbueng.ac.th" class="btn-action">✉️ ส่งอีเมล</a>
+                            <button class="btn-action" onclick="copyEmail()" data-th="📋 คัดลอกอีเมล" data-en="📋 Copy Email">📋 คัดลอกอีเมล</button>
+                            <a href="mailto:bb36177@banbung.ac.th" class="btn-action" style="background: var(--accent); color: #000;" data-th="✉️ ส่งอีเมลทันที" data-en="✉️ Send Email">✉️ ส่งอีเมลทันที</a>
                         </div>
                     </div>
 
+                    <!-- Dev Card 2 -->
                     <div class="dev-card">
-                        <div class="dev-avatar">🤖</div>
-                        <h3 class="dev-name">นักเรียนผู้พัฒนา</h3>
-                        <p class="dev-role" data-th="โปรแกรมเมอร์ & ออกแบบระบบ" data-en="Lead Programmer & Designer">โปรแกรมเมอร์ & ออกแบบระบบ</p>
-                        <div class="email-box">
-                            <span class="email-text" id="email-2">robotics.dev@banbueng.ac.th</span>
-                        </div>
-                        <div class="btn-action-group">
-                            <button class="btn-action" onclick="copyEmail('robotics.dev@banbueng.ac.th')">📋 คัดลอกอีเมล</button>
-                            <a href="mailto:robotics.dev@banbueng.ac.th" class="btn-action">✉️ ส่งอีเมล</a>
+                        <div class="dev-avatar" style="background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);">🏫</div>
+                        <div class="dev-name" data-th="ข้อมูลสถาบัน" data-en="School Institution">ข้อมูลสถาบัน</div>
+                        <div class="dev-role" style="color: var(--accent-gold);">BANBUENG "UTSAHAKAMNUKROEH"</div>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;" data-th="ศูนย์ฝึกทักษะหุ่นยนต์และเทคโนโลยีอัตโนมัติ อำเภอบ้านบึง จังหวัดชลบุรี" data-en="Robotics & Industrial Automation Training Center, Banbueng, Chonburi">
+                            ศูนย์ฝึกทักษะหุ่นยนต์และเทคโนโลยีอัตโนมัติ อำเภอบ้านบึง จังหวัดชลบุรี
+                        </p>
+
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+                            <span style="font-size: 0.82rem; color: var(--text-muted);" data-th="Tech Stack: HTML5 / Cyberpunk CSS3 / Google Forms" data-en="Tech Stack: HTML5 / Cyberpunk CSS3 / Google Forms">Tech Stack: HTML5 / Cyberpunk CSS3 / Google Forms</span>
                         </div>
                     </div>
                 </div>
@@ -842,76 +819,49 @@
 
     </div>
 
-    <!-- Toast แจ้งเตือนการคัดลอก -->
-    <div id="copy-toast" class="copy-toast">คัดลอกอีเมลเรียบร้อยแล้ว!</div>
+    <!-- Toast แจ้งเตือนเมื่อกดคัดลอกอีเมล -->
+    <div id="toast" class="copy-toast" data-th="คัดลอกอีเมลเรียบร้อยแล้ว!" data-en="Email copied to clipboard!">คัดลอกอีเมลเรียบร้อยแล้ว!</div>
 
-    <!-- Footer พร้อมปุ่มเปลี่ยนภาษา -->
+    <!-- Footer -->
     <footer>
         <div class="lang-switch-box">
-            <span style="color: var(--text-muted); font-size: 0.85rem;" data-th="ภาษา / Language:" data-en="Language:">ภาษา / Language:</span>
-            <button class="lang-btn active" id="lang-th" onclick="switchLanguage('th')">ไทย (TH)</button>
-            <button class="lang-btn" id="lang-en" onclick="switchLanguage('EN')">English (EN)</button>
+            <span style="font-size: 0.9rem; color: var(--text-muted);" data-th="ภาษา / Language:" data-en="Language / ภาษา:">ภาษา / Language:</span>
+            <button class="lang-btn active" id="btn-th" onclick="changeLanguage('th')">TH (ไทย)</button>
+            <button class="lang-btn" id="btn-en" onclick="changeLanguage('en')">EN (English)</button>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.85rem;" data-th="© 2026 โรงเรียนบ้านบึง &quot;อุตสาหกรรมนุเคราะห์&quot; • สงวนลิขสิทธิ์ทั้งหมด" data-en="© 2026 Banbueng School • All Rights Reserved">
-            © 2026 โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์" • สงวนลิขสิทธิ์ทั้งหมด
-        </p>
+        <div style="color: var(--text-muted); font-size: 0.9rem;" data-th="เว็บไซต์เพื่อการศึกษา - โรงเรียนบ้านบึง &quot;อุตสาหกรรมนุเคราะห์&quot; จังหวัดชลบุรี" data-en="Educational Website - Banbueng &quot;Utsahakamnukroeh&quot; School, Chonburi">
+            เว็บไซต์เพื่อการศึกษา - โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์" จังหวัดชลบุรี
+        </div>
     </footer>
 
-    <!-- JavaScript สำหรับควบคุมเว็บ -->
     <script>
-        let currentLang = 'th';
-
         function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
 
             const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
+            if (targetPage) targetPage.classList.add('active');
 
-            const targetBtn = document.getElementById('btn-' + pageId);
-            if (targetBtn) {
-                targetBtn.classList.add('active');
-            }
+            const activeBtn = document.getElementById('btn-' + pageId);
+            if (activeBtn) activeBtn.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function switchLanguage(lang) {
-            currentLang = lang;
-            document.getElementById('lang-th').classList.toggle('active', lang === 'th');
-            document.getElementById('lang-en').classList.toggle('active', lang === 'EN');
+        function changeLanguage(lang) {
+            document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
             document.querySelectorAll('[data-th]').forEach(el => {
-                const text = el.getAttribute(`data-${lang.toLowerCase()}`);
-                if (text) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = text;
-                    } else {
-                        el.innerHTML = text;
-                    }
-                }
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.innerHTML = text;
             });
         }
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const alertBox = document.getElementById('alert-success');
-            alertBox.style.display = 'block';
-            document.getElementById('support-form').reset();
-            setTimeout(() => {
-                alertBox.style.display = 'none';
-            }, 5000);
-        }
-
-        function copyEmail(email) {
-            navigator.clipboard.writeText(email).then(() => {
-                const toast = document.getElementById('copy-toast');
+        const devEmail = "bb36177@banbung.ac.th";
+        function copyEmail() {
+            navigator.clipboard.writeText(devEmail).then(() => {
+                const toast = document.getElementById('toast');
                 toast.classList.add('show');
                 setTimeout(() => {
                     toast.classList.remove('show');
