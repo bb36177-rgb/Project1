@@ -11,17 +11,17 @@
     
     <style>
         :root {
-            --primary: #0a1128;
-            --primary-light: #1c2541;
+            --primary: #030712;
             --accent: #00f0ff;
+            --accent-gold: #ffd700;
             --accent-hover: #70e000;
-            --accent-glow: rgba(0, 240, 255, 0.6);
+            --accent-glow: rgba(0, 240, 255, 0.5);
             --bg-main: #050814;
             --surface-card: #0f172a;
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
-            --border-color: rgba(0, 240, 255, 0.2);
-            --shadow-glow: 0 0 25px rgba(0, 240, 255, 0.35);
+            --border-color: rgba(0, 240, 255, 0.15);
+            --shadow-glow: 0 10px 30px rgba(0, 240, 255, 0.25);
         }
 
         * {
@@ -41,107 +41,173 @@
             overflow-x: hidden;
         }
 
-        /* Top Header / Navigation Bar */
+        /* =========================================================
+           ADVANCED LUXURY HEADER & NAVIGATION BAR
+           ========================================================= */
         header {
-            background: rgba(10, 17, 40, 0.85);
-            backdrop-filter: blur(16px);
+            background: rgba(5, 8, 20, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--accent);
-            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* เส้นแสง Gradient แปรงวิ่งใต้ Header */
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--accent-gold), transparent);
+            animation: headerLineFlow 6s infinite ease-in-out;
+        }
+
+        @keyframes headerLineFlow {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.6rem 1.2rem;
-            flex-wrap: wrap;
-            gap: 15px;
+            padding: 0.7rem 1.5rem;
+            gap: 20px;
         }
 
-        /* ตราโรงเรียนมุมซ้าย */
-        .brand-logo-container {
+        /* ----- ตราโรงเรียนแบบพื้นหลังขาวสไตล์กระเบื้องกระจกหรู ----- */
+        .brand-logo-card {
             display: flex;
             align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 4px;
+            padding: 6px 18px 6px 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 50px;
             position: relative;
-        }
-
-        .school-logo-img {
-            height: 58px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px var(--accent));
-            animation: logoFloat 3s ease-in-out infinite alternate;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 
+                0 4px 20px rgba(255, 255, 255, 0.25),
+                0 0 15px rgba(0, 240, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes logoFloat {
-            0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px var(--accent)); }
-            100% { transform: translateY(-5px) scale(1.05); filter: drop-shadow(0 0 18px var(--accent-hover)); }
+        /* แสงสะท้อนวิ้งค์ๆ เคลื่อนผ่านพื้นหลังขาว */
+        .brand-logo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -75%;
+            width: 50%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transform: rotate(25deg);
+            transition: 0.6s;
         }
 
-        /* เมนูเลือกหน้า */
+        .brand-logo-card:hover::before {
+            left: 125%;
+        }
+
+        .brand-logo-card:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 
+                0 8px 30px rgba(255, 255, 255, 0.4),
+                0 0 25px rgba(0, 240, 255, 0.6);
+            border-color: var(--accent);
+        }
+
+        .school-logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+            transition: transform 0.4s ease;
+        }
+
+        .brand-logo-card:hover .school-logo-img {
+            transform: rotate(-5deg) scale(1.08);
+        }
+
+        .brand-text {
+            margin-left: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: -0.2px;
+        }
+
+        .brand-subtitle {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ----- เมนูแท็บนำทางระดับพรีเมียม ----- */
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 0.8rem;
-            flex-wrap: wrap;
+            gap: 0.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 6px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .nav-btn {
-            background: rgba(28, 37, 65, 0.6);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            font-size: 0.95rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             font-weight: 500;
             padding: 8px 20px;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            overflow: hidden;
-        }
-
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
-            transition: 0.5s;
-        }
-
-        .nav-btn:hover::before {
-            left: 100%;
+            outline: none;
         }
 
         .nav-btn:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-            transform: translateY(-3px);
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
+        /* ปุ่มเมนูเมื่อเปิดใช้อยู่ (Active Mode) */
         .nav-btn.active {
             color: #000;
-            background: linear-gradient(135deg, var(--accent), #70e000);
             font-weight: 700;
-            box-shadow: 0 0 20px var(--accent-glow);
-            border-color: transparent;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+            box-shadow: 
+                0 0 20px rgba(0, 240, 255, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8);
+            animation: activeGlow 3s infinite alternate;
+        }
+
+        @keyframes activeGlow {
+            0% { box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
+            100% { box-shadow: 0 0 25px rgba(0, 240, 255, 0.8), 0 0 10px rgba(255, 215, 0, 0.5); }
         }
 
         /* Hero Cyber Banner */
         .hero-banner {
             background: radial-gradient(circle at center, #1c2541 0%, #0a1128 100%);
             color: #ffffff;
-            padding: 4rem 1.2rem;
+            padding: 4.5rem 1.2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -153,10 +219,10 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+                linear-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.08) 1px, transparent 1px);
             background-size: 40px 40px;
-            animation: gridScan 15s linear infinite;
+            animation: gridScan 20s linear infinite;
             pointer-events: none;
         }
 
@@ -166,12 +232,12 @@
         }
 
         .hero-title {
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            background: linear-gradient(90deg, #ffffff, var(--accent), #70e000);
+            background: linear-gradient(90deg, #ffffff 0%, var(--accent) 50%, #70e000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+            text-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
             margin-bottom: 0.5rem;
         }
 
@@ -183,22 +249,16 @@
 
         .hero-school {
             display: inline-block;
-            padding: 8px 24px;
-            background: rgba(0, 240, 255, 0.1);
+            padding: 8px 26px;
+            background: rgba(0, 240, 255, 0.08);
             border: 1px solid var(--accent);
             border-radius: 50px;
             color: var(--accent);
             font-weight: 600;
-            box-shadow: 0 0 15px var(--accent-glow);
-            animation: pulseGlow 2s infinite alternate;
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px var(--accent-glow); }
-            100% { box-shadow: 0 0 25px var(--accent-glow), 0 0 10px var(--accent-hover); }
-        }
-
-        /* Container */
+        /* Container & Cards */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -223,7 +283,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards & Grid */
         .navigation-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -272,7 +331,6 @@
             font-size: 0.95rem;
         }
 
-        /* Mission Image Box */
         .card {
             background: var(--surface-card);
             border-radius: 16px;
@@ -300,7 +358,6 @@
             margin: 0 auto;
         }
 
-        /* Rules & Techniques */
         .rules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -387,9 +444,9 @@
             box-shadow: 0 0 12px var(--accent-glow);
         }
 
-        @media (max-width: 768px) {
-            nav { justify-content: center; }
-            .hero-title { font-size: 1.8rem; }
+        @media (max-width: 868px) {
+            nav { flex-direction: column; justify-content: center; }
+            .hero-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -398,9 +455,13 @@
     <!-- Header Navigation Bar -->
     <header>
         <nav>
-            <!-- ตราโลโก้โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์" มุมซ้าย -->
-            <a class="brand-logo-container" onclick="showPage('home')" title="หน้าหลัก">
+            <!-- ตราโรงเรียนแบบพื้นหลังขาวสไตล์กระเบื้องกระจกหรู -->
+            <a class="brand-logo-card" onclick="showPage('home')" title="หน้าหลัก">
                 <img src="school-logo.png" alt="ตราโรงเรียนบ้านบึง อุตสาหกรรมนุเคราะห์" class="school-logo-img">
+                <div class="brand-text">
+                    <span class="brand-title">บ้านบึง "อุตสาหกรรมนุเคราะห์"</span>
+                    <span class="brand-subtitle">Robotics & Automation</span>
+                </div>
             </a>
 
             <!-- เมนูสลับหน้า -->
