@@ -517,6 +517,421 @@
     </script>
 </body>
 </html>
+            background: rgba(15, 23, 42, 0.6);
+            padding: 6px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: #ffffff;
+        }
+
+        .nav-btn.active {
+            color: #000;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+        }
+
+        .hero-banner {
+            background: radial-gradient(circle at center, #1c2541 0%, #0a1128 100%);
+            color: #ffffff;
+            padding: 4rem 1.2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ffffff 0%, var(--accent) 50%, #70e000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-school {
+            display: inline-block;
+            padding: 6px 22px;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid var(--accent);
+            border-radius: 50px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.2rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .page-view {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .page-view.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-card {
+            background: var(--surface-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: 0.35s ease;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-card h4 { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .nav-card p { color: var(--text-muted); font-size: 0.88rem; }
+
+        .card {
+            background: var(--surface-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .mission-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            background: #000;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+        }
+
+        .mission-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .rule-card {
+            background: var(--surface-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .rule-card h3 { color: var(--accent); margin-bottom: 0.5rem; }
+
+        .steps { list-style: none; counter-reset: step; }
+        .steps li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 3.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0; top: 0;
+            width: 40px; height: 40px;
+            background: var(--accent);
+            color: #000;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .support-card {
+            background: var(--surface-card);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--accent);
+        }
+
+        .gform-wrapper {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            padding: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .gform-iframe {
+            width: 100%;
+            height: 1200px;
+            border: none;
+        }
+
+        .dev-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .dev-card {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .dev-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-size: 2.5rem;
+            color: #000;
+        }
+
+        .email-box {
+            background: #050814;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: var(--accent-gold);
+            font-family: monospace;
+        }
+
+        .btn-action {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--accent);
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            margin: 4px;
+        }
+
+        footer {
+            background: #030712;
+            padding: 2rem 1.2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+
+        .lang-switch-box {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: #000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a class="brand-logo-card" onclick="showPage('home')">
+                <img src="school-logo.png" alt="โลโก้โรงเรียน" class="school-logo-img">
+                <div class="brand-text">
+                    <span class="brand-title">บ้านบึง "อุตสาหกรรมนุเคราะห์"</span>
+                    <span class="brand-subtitle">Robotics & Automation</span>
+                </div>
+            </a>
+            <ul class="nav-menu">
+                <li><button class="nav-btn active" id="btn-home" onclick="showPage('home')">หน้าหลัก</button></li>
+                <li><button class="nav-btn" id="btn-rules" onclick="showPage('rules')">กติกาการแข่งขัน</button></li>
+                <li><button class="nav-btn" id="btn-missions" onclick="showPage('missions')">ภารกิจสนาม</button></li>
+                <li><button class="nav-btn" id="btn-techniques" onclick="showPage('techniques')">เทคนิคและวิธีทำ</button></li>
+                <li><button class="nav-btn" id="btn-support" onclick="showPage('support')">แจ้งปัญหา</button></li>
+                <li><button class="nav-btn" id="btn-developer" onclick="showPage('developer')">ผู้พัฒนา</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <h1 class="hero-title">การแข่งขันหุ่นยนต์ระดับสูง สพฐ.</h1>
+        <p class="hero-subtitle">ศูนย์การเรียนรู้และพัฒนาทักษะหุ่นยนต์อัตโนมัติเพื่อการศึกษา</p>
+        <div class="hero-school">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์" จังหวัดชลบุรี</div>
+    </div>
+
+    <div class="container">
+        <div id="page-home" class="page-view active">
+            <div class="navigation-grid">
+                <div class="nav-card" onclick="showPage('rules')">
+                    <h4>กติกาการแข่งขัน ➔</h4>
+                    <p>ข้อกำหนดขนาดหุ่นยนต์ บอร์ดควบคุม และเกณฑ์คะแนน</p>
+                </div>
+                <div class="nav-card" onclick="showPage('missions')">
+                    <h4>ภารกิจสนาม ➔</h4>
+                    <p>แผนผังสนามหุ่นยนต์กู้ภัยและจุดวางถุงยังชีพ</p>
+                </div>
+                <div class="nav-card" onclick="showPage('techniques')">
+                    <h4>เทคนิคและวิธีทำ ➔</h4>
+                    <p>การใช้ PID Controller และการปรับแต่งเซนเซอร์</p>
+                </div>
+                <div class="nav-card" onclick="showPage('support')">
+                    <h4>แจ้งปัญหา & ประเมิน ➔</h4>
+                    <p>สอบถามข้อสงสัย แจ้งปัญหา และประเมินความพึงพอใจ</p>
+                </div>
+                <div class="nav-card" onclick="showPage('developer')">
+                    <h4>ติดต่อผู้พัฒนา ➔</h4>
+                    <p>ช่องทางติดต่อทีมผู้พัฒนาระบบข้อมูล</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-rules" class="page-view">
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h3>1. ขนาดและน้ำหนักหุ่นยนต์</h3>
+                    <p>ขนาดหุ่นยนต์เมื่อเริ่มต้นต้องไม่เกิน 30 x 30 x 30 ซม.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-missions" class="page-view">
+            <div class="card">
+                <h2 style="color: var(--accent);">ภารกิจสนาม (หุ่นยนต์กู้ภัย)</h2>
+                <div class="mission-image-container">
+                    <img src="field-map.jpg" alt="แผนผังสนาม" class="mission-image">
+                </div>
+            </div>
+        </div>
+
+        <div id="page-techniques" class="page-view">
+            <div class="card">
+                <h2 style="color: var(--accent);">เทคนิคและวิธีทำ</h2>
+                <ol class="steps">
+                    <li><strong>การปรับสมดุลเซนเซอร์:</strong> วัดค่าแสงขาวและดำบนสนามจริง</li>
+                    <li><strong>การใช้ PID Controller:</strong> จูนค่า Kp, Ki, Kd ให้วิ่งตามเส้นเนียนขึ้น</li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="page-support" class="page-view">
+            <div class="support-card">
+                <h2 style="color: var(--accent);">ศูนย์ตอบกลับปัญหา</h2>
+                <div class="gform-wrapper">
+                    <iframe class="gform-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScxJ12HNAdQaseH3U5jaB8k_QTtZS9w6tu7P2czA4mzC38S3A/viewform?embedded=true">กำลังโหลด...</iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-developer" class="page-view">
+            <div class="dev-container">
+                <div class="dev-card">
+                    <div class="dev-avatar">💻</div>
+                    <h3>ผู้พัฒนาระบบ</h3>
+                    <div class="email-box">bb36177@banbung.ac.th</div>
+                    <a href="mailto:bb36177@banbung.ac.th" class="btn-action">ส่งอีเมลทันที</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="lang-switch-box">
+            <button class="lang-btn active" id="btn-th" onclick="changeLanguage('th')">TH</button>
+            <button class="lang-btn" id="btn-en" onclick="changeLanguage('en')">EN</button>
+        </div>
+        <div id="last-update-text" style="color: var(--accent); font-size: 0.85rem; margin-top: 5px;">กำลังโหลดเวลาอัปเดตระบบล่าสุด...</div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            const btn = document.getElementById('btn-' + pageId);
+            if(btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function fetchGitHubLastUpdate() {
+            const repoOwner = 'bb36177-rgb';
+            const repoName = 'Project1';
+            const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/commits?per_page=1`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    const commitDate = new Date(data[0].commit.committer.date);
+                    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Bangkok' };
+                    const thaiDateStr = new Intl.DateTimeFormat('th-TH', options).format(commitDate);
+                    document.getElementById('last-update-text').innerText = `ปรับปรุงระบบล่าสุดเมื่อ วันที่ ${thaiDateStr} น.`;
+                }
+            } catch (error) {
+                const now = new Date();
+                document.getElementById('last-update-text').innerText = `ปรับปรุงระบบล่าสุดเมื่อ วันที่ ${now.toLocaleDateString('th-TH')} น.`;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', fetchGitHubLastUpdate);
+    </script>
+</body>
+</html>
             transform: rotate(25deg);
             transition: 0.6s;
         }
